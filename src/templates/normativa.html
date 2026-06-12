@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block titolo %}Normativa vigente{% endblock %}
+{% block contenuto %}
+<h1>Normativa vigente</h1>
+<p class="nota">Parametri applicati dal sistema. Fonte: {{ rules.RIFERIMENTO_NORMATIVO }}.</p>
+
+<table class="tabella">
+  <thead>
+    <tr>
+      <th>Categoria</th>
+      <th class="num">Massimale di esenzione</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for codice, massimale in rules.MASSIMALI_GIORNALIERI.items() %}
+    <tr>
+      <td>{{ rules.CATEGORIE[codice] }}</td>
+      <td class="num">{{ "%.2f"|format(massimale) }} € / giorno</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td>{{ rules.CATEGORIE["chilometrico"] }}</td>
+      <td class="num">{{ "%.2f"|format(rules.MASSIMALE_KM) }} € / km</td>
+    </tr>
+    <tr>
+      <td>{{ rules.CATEGORIE["alloggio"] }}</td>
+      <td class="num">{{ "%.2f"|format(rules.MASSIMALE_NOTTE) }} € / notte</td>
+    </tr>
+    <tr class="riga-evidenziata">
+      <td><strong>Plafond mensile complessivo per dipendente</strong></td>
+      <td class="num"><strong>{{ "%.2f"|format(rules.PLAFOND_MENSILE) }} € / mese</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<section class="scheda">
+  <h2>Come avviene il calcolo</h2>
+  <ol>
+    <li>Si determina il massimale applicabile alla richiesta (massimale unitario × quantità).</li>
+    <li>La quota esente teorica è il minore tra l'importo richiesto e il massimale applicabile.</li>
+    <li>La quota esente effettiva è limitata dalla capienza residua del plafond mensile del dipendente.</li>
+    <li>La parte eccedente è quota imponibile e concorre alla formazione del reddito.</li>
+  </ol>
+</section>
+{% endblock %}

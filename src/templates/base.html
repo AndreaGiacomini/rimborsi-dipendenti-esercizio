@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titolo %}Gestione Rimborsi{% endblock %} – Rimborsi Dipendenti</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="barra">
+    <div class="contenitore barra-interna">
+      <span class="logo">Rimborsi Dipendenti</span>
+      <nav>
+        <a href="{{ url_for('elenco') }}">Richieste</a>
+        <a href="{{ url_for('nuova_richiesta') }}">Nuova richiesta</a>
+        <a href="{{ url_for('riepilogo') }}">Riepilogo mensile</a>
+        <a href="{{ url_for('normativa') }}">Normativa vigente</a>
+      </nav>
+    </div>
+  </header>
+  <main class="contenitore">
+    {% block contenuto %}{% endblock %}
+  </main>
+  <footer class="contenitore pie">
+    Strumento interno ufficio HR – i calcoli applicano la normativa vigente.
+  </footer>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

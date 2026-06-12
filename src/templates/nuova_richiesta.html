@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block titolo %}Nuova richiesta{% endblock %}
+{% block contenuto %}
+<h1>Nuova richiesta di rimborso</h1>
+
+{% if esito %}
+  {% if esito.stato == "valida" %}
+  <div class="esito esito-ok">
+    <strong>Richiesta #{{ esito.id }} registrata.</strong>
+    Quota esente: {{ "%.2f"|format(esito.quota_esente) }} € ·
+    Quota imponibile: {{ "%.2f"|format(esito.quota_imponibile) }} €
+    {% if esito.dettaglio %}
+    <ul class="dettaglio-calcolo">
+      <li>Massimale applicabile: {{ "%.2f"|format(esito.dettaglio.massimale_teorico) }} €</li>
+      <li>Quota esente teorica: {{ "%.2f"|format(esito.dettaglio.esente_teorica) }} €</li>
+      <li>Capienza residua plafond mensile: {{ "%.2f"|format(esito.dettaglio.capienza_plafond) }} €</li>
+    </ul>
+    {% endif %}
+  </div>
+  {% else %}
+  <div class="esito esito-errore">
+    <strong>Richiesta #{{ esito.id }} respinta.</strong> Motivazione: {{ esito.motivazione }}.
+  </div>
+  {% endif %}
+{% endif %}
+
+<form method="post" class="scheda modulo">
+  <label>Dipendente
+    <input type="text" name="dipendente" required placeholder="Nome e cognome">
+  </label>
+  <label>Data di sostenimento
+    <input type="date" name="data" required>
+  </label>
+  <label>Categoria
+    <select name="categoria" id="categoria" required>
+      {% for codice, etichetta in categorie.items() %}
+      <option value="{{ codice }}">{{ etichetta }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Importo richiesto (€)
+    <input type="number" name="importo" step="0.01" min="0" required>
+  </label>
+  <label data-campo="giorni">Numero di giornate
+    <input type="number" name="giorni" min="1" step="1">
+  </label>
+  <label data-campo="km" hidden>Chilometri percorsi
+    <input type="number" name="km" min="1" step="1">
+  </label>
+  <label data-campo="notti" hidden>Numero di notti
+    <input type="number" name="notti" min="1" step="1">
+  </label>
+  <button type="submit">Registra richiesta</button>
+</form>
+{% endblock %}

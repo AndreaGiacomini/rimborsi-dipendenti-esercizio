@@ -1,0 +1,412 @@
+[
+  {
+    "id": 1,
+    "dipendente": "Maria Rossi",
+    "data": "2025-09-08",
+    "categoria": "trasferta_italia",
+    "importo": 180.0,
+    "giorni": 4,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 180.0,
+    "quota_imponibile": 0.0,
+    "dettaglio": {
+      "massimale_teorico": 185.92,
+      "esente_teorica": 180.0,
+      "capienza_plafond": 1200.0
+    }
+  },
+  {
+    "id": 2,
+    "dipendente": "Maria Rossi",
+    "data": "2025-09-09",
+    "categoria": "alloggio",
+    "importo": 420.0,
+    "giorni": null,
+    "km": null,
+    "notti": 3,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 420.0,
+    "quota_imponibile": 0.0,
+    "dettaglio": {
+      "massimale_teorico": 450.0,
+      "esente_teorica": 420.0,
+      "capienza_plafond": 1020.0
+    }
+  },
+  {
+    "id": 3,
+    "dipendente": "Luca Bianchi",
+    "data": "2025-09-10",
+    "categoria": "pasto",
+    "importo": 40.0,
+    "giorni": 5,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 40.0,
+    "quota_imponibile": 0.0,
+    "dettaglio": {
+      "massimale_teorico": 40.0,
+      "esente_teorica": 40.0,
+      "capienza_plafond": 1200.0
+    }
+  },
+  {
+    "id": 4,
+    "dipendente": "Anna Verdi",
+    "data": "2025-09-15",
+    "categoria": "chilometrico",
+    "importo": 130.0,
+    "giorni": null,
+    "km": 280,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 117.6,
+    "quota_imponibile": 12.4,
+    "dettaglio": {
+      "massimale_teorico": 117.6,
+      "esente_teorica": 117.6,
+      "capienza_plafond": 1200.0
+    }
+  },
+  {
+    "id": 5,
+    "dipendente": "Paolo Neri",
+    "data": "2025-09-18",
+    "categoria": "trasferta_estero",
+    "importo": 600.0,
+    "giorni": 7,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 542.29,
+    "quota_imponibile": 57.71,
+    "dettaglio": {
+      "massimale_teorico": 542.29,
+      "esente_teorica": 542.29,
+      "capienza_plafond": 1200.0
+    }
+  },
+  {
+    "id": 6,
+    "dipendente": "Paolo Neri",
+    "data": "2025-09-19",
+    "categoria": "alloggio",
+    "importo": 900.0,
+    "giorni": null,
+    "km": null,
+    "notti": 6,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 657.71,
+    "quota_imponibile": 242.29,
+    "dettaglio": {
+      "massimale_teorico": 900.0,
+      "esente_teorica": 900.0,
+      "capienza_plafond": 657.71
+    }
+  },
+  {
+    "id": 7,
+    "dipendente": "Luca Bianchi",
+    "data": "2025-09-22",
+    "categoria": "trasferta_italia",
+    "importo": 95.0,
+    "giorni": 2,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 92.96,
+    "quota_imponibile": 2.04,
+    "dettaglio": {
+      "massimale_teorico": 92.96,
+      "esente_teorica": 92.96,
+      "capienza_plafond": 1160.0
+    }
+  },
+  {
+    "id": 8,
+    "dipendente": "Anna Verdi",
+    "data": "2025-09-25",
+    "categoria": "pasto",
+    "importo": 0.0,
+    "giorni": 3,
+    "km": null,
+    "notti": null,
+    "stato": "respinta",
+    "motivazione": "importo non positivo",
+    "quota_esente": 0.0,
+    "quota_imponibile": 0.0,
+    "dettaglio": null
+  },
+  {
+    "id": 9,
+    "dipendente": "Maria Rossi",
+    "data": "2025-10-02",
+    "categoria": "pasto",
+    "importo": 32.0,
+    "giorni": 4,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 32.0,
+    "quota_imponibile": 0.0,
+    "dettaglio": {
+      "massimale_teorico": 32.0,
+      "esente_teorica": 32.0,
+      "capienza_plafond": 1200.0
+    }
+  },
+  {
+    "id": 10,
+    "dipendente": "Anna Verdi",
+    "data": "2025-10-06",
+    "categoria": "trasferta_estero",
+    "importo": 250.0,
+    "giorni": 3,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 232.41,
+    "quota_imponibile": 17.59,
+    "dettaglio": {
+      "massimale_teorico": 232.41,
+      "esente_teorica": 232.41,
+      "capienza_plafond": 1200.0
+    }
+  },
+  {
+    "id": 11,
+    "dipendente": "Luca Bianchi",
+    "data": "2025-10-09",
+    "categoria": "parcheggio",
+    "importo": 25.0,
+    "giorni": null,
+    "km": null,
+    "notti": null,
+    "stato": "respinta",
+    "motivazione": "categoria non riconosciuta",
+    "quota_esente": 0.0,
+    "quota_imponibile": 0.0,
+    "dettaglio": null
+  },
+  {
+    "id": 12,
+    "dipendente": "Paolo Neri",
+    "data": "2025-10-13",
+    "categoria": "chilometrico",
+    "importo": 60.0,
+    "giorni": null,
+    "km": 120,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 50.4,
+    "quota_imponibile": 9.6,
+    "dettaglio": {
+      "massimale_teorico": 50.4,
+      "esente_teorica": 50.4,
+      "capienza_plafond": 1200.0
+    }
+  },
+  {
+    "id": 13,
+    "dipendente": "Maria Rossi",
+    "data": "2025-10-14",
+    "categoria": "trasferta_italia",
+    "importo": 240.0,
+    "giorni": 5,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 232.4,
+    "quota_imponibile": 7.6,
+    "dettaglio": {
+      "massimale_teorico": 232.4,
+      "esente_teorica": 232.4,
+      "capienza_plafond": 1168.0
+    }
+  },
+  {
+    "id": 14,
+    "dipendente": "Maria Rossi",
+    "data": "2025-10-15",
+    "categoria": "alloggio",
+    "importo": 800.0,
+    "giorni": null,
+    "km": null,
+    "notti": 4,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 600.0,
+    "quota_imponibile": 200.0,
+    "dettaglio": {
+      "massimale_teorico": 600.0,
+      "esente_teorica": 600.0,
+      "capienza_plafond": 935.6
+    }
+  },
+  {
+    "id": 15,
+    "dipendente": "Maria Rossi",
+    "data": "2025-10-20",
+    "categoria": "pasto",
+    "importo": 64.0,
+    "giorni": 8,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 64.0,
+    "quota_imponibile": 0.0,
+    "dettaglio": {
+      "massimale_teorico": 64.0,
+      "esente_teorica": 64.0,
+      "capienza_plafond": 335.6
+    }
+  },
+  {
+    "id": 16,
+    "dipendente": "Anna Verdi",
+    "data": "2025-10-21",
+    "categoria": "alloggio",
+    "importo": 310.0,
+    "giorni": null,
+    "km": null,
+    "notti": 2,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 300.0,
+    "quota_imponibile": 10.0,
+    "dettaglio": {
+      "massimale_teorico": 300.0,
+      "esente_teorica": 300.0,
+      "capienza_plafond": 967.59
+    }
+  },
+  {
+    "id": 17,
+    "dipendente": "Luca Bianchi",
+    "data": "2025-11-03",
+    "categoria": "trasferta_estero",
+    "importo": 800.0,
+    "giorni": 10,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 774.7,
+    "quota_imponibile": 25.3,
+    "dettaglio": {
+      "massimale_teorico": 774.7,
+      "esente_teorica": 774.7,
+      "capienza_plafond": 1200.0
+    }
+  },
+  {
+    "id": 18,
+    "dipendente": "Luca Bianchi",
+    "data": "2025-11-04",
+    "categoria": "alloggio",
+    "importo": 1500.0,
+    "giorni": null,
+    "km": null,
+    "notti": 9,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 425.3,
+    "quota_imponibile": 1074.7,
+    "dettaglio": {
+      "massimale_teorico": 1350.0,
+      "esente_teorica": 1350.0,
+      "capienza_plafond": 425.3
+    }
+  },
+  {
+    "id": 19,
+    "dipendente": "Paolo Neri",
+    "data": "2025-11-10",
+    "categoria": "trasferta_italia",
+    "importo": 140.0,
+    "giorni": 3,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 139.44,
+    "quota_imponibile": 0.56,
+    "dettaglio": {
+      "massimale_teorico": 139.44,
+      "esente_teorica": 139.44,
+      "capienza_plafond": 1200.0
+    }
+  },
+  {
+    "id": 20,
+    "dipendente": "Anna Verdi",
+    "data": "2025-11-12",
+    "categoria": "chilometrico",
+    "importo": 200.0,
+    "giorni": null,
+    "km": 410,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 172.2,
+    "quota_imponibile": 27.8,
+    "dettaglio": {
+      "massimale_teorico": 172.2,
+      "esente_teorica": 172.2,
+      "capienza_plafond": 1200.0
+    }
+  },
+  {
+    "id": 21,
+    "dipendente": "Paolo Neri",
+    "data": "2025-11-17",
+    "categoria": "pasto",
+    "importo": 24.0,
+    "giorni": 3,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 24.0,
+    "quota_imponibile": 0.0,
+    "dettaglio": {
+      "massimale_teorico": 24.0,
+      "esente_teorica": 24.0,
+      "capienza_plafond": 1060.56
+    }
+  },
+  {
+    "id": 22,
+    "dipendente": "Maria Rossi",
+    "data": "2025-11-20",
+    "categoria": "trasferta_estero",
+    "importo": 160.0,
+    "giorni": 2,
+    "km": null,
+    "notti": null,
+    "stato": "valida",
+    "motivazione": "",
+    "quota_esente": 154.94,
+    "quota_imponibile": 5.06,
+    "dettaglio": {
+      "massimale_teorico": 154.94,
+      "esente_teorica": 154.94,
+      "capienza_plafond": 1200.0
+    }
+  }
+]

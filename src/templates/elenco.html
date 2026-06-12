@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block titolo %}Richieste{% endblock %}
+{% block contenuto %}
+<h1>Richieste di rimborso</h1>
+
+<form method="get" class="filtri">
+  <label>Dipendente
+    <select name="dipendente">
+      <option value="">Tutti</option>
+      {% for d in dipendenti %}
+      <option value="{{ d }}" {% if d == filtro_dipendente %}selected{% endif %}>{{ d }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Mese
+    <select name="mese">
+      <option value="">Tutti</option>
+      {% for m in mesi %}
+      <option value="{{ m }}" {% if m == filtro_mese %}selected{% endif %}>{{ m }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <button type="submit">Filtra</button>
+</form>
+
+<table class="tabella">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Data</th>
+      <th>Dipendente</th>
+      <th>Categoria</th>
+      <th class="num">Importo</th>
+      <th class="num">Esente</th>
+      <th class="num">Imponibile</th>
+      <th>Stato</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in richieste %}
+    <tr class="riga-richiesta" data-id="{{ r.id }}">
+      <td>{{ r.id }}</td>
+      <td>{{ r.data }}</td>
+      <td>{{ r.dipendente }}</td>
+      <td>{{ categorie.get(r.categoria, r.categoria) }}</td>
+      <td class="num">{{ "%.2f"|format(r.importo or 0) }} €</td>
+      <td class="num">{{ "%.2f"|format(r.quota_esente) }} €</td>
+      <td class="num">{{ "%.2f"|format(r.quota_imponibile) }} €</td>
+      <td>
+        {% if r.stato == "valida" %}
+        <span class="stato stato-ok">valida</span>
+        {% else %}
+        <span class="stato stato-errore" title="{{ r.motivazione }}">respinta</span>
+        {% endif %}
+      </td>
+    </tr>
+    <tr class="riga-dettaglio" hidden>
+      <td colspan="8">
+        {% if r.stato == "valida" and r.dettaglio %}
+        Massimale applicabile: {{ "%.2f"|format(r.dettaglio.massimale_teorico) }} € ·
+        Quota esente teorica: {{ "%.2f"|format(r.dettaglio.esente_teorica) }} € ·
+        Capienza residua plafond al momento della richiesta: {{ "%.2f"|format(r.dettaglio.capienza_plafond) }} €
+        {% elif r.stato == "respinta" %}
+        Motivazione del respingimento: {{ r.motivazione }}
+        {% else %}
+        Nessun dettaglio disponibile.
+        {% endif %}
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="8">Nessuna richiesta trovata.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p class="nota">Clicca su una riga per vedere il dettaglio del calcolo.</p>
+{% endblock %}
