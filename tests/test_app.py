@@ -14,7 +14,7 @@ def client(tmp_path, monkeypatch):
 def nuova_richiesta_pasto(client, **campi):
     dati = {
         "dipendente": "Maria Rossi",
-        "data": "2025-10-06",
+        "data": "2026-03-10",
         "categoria": "pasto",
         "importo": "24.00",
         "giorni": "3",
@@ -57,20 +57,20 @@ def test_registrazione_richiesta_respinta(client):
 
 
 def test_eccedenza_oltre_massimale_diventa_imponibile(client):
-    nuova_richiesta_pasto(client, importo="30.00", giorni="3")
+    nuova_richiesta_pasto(client, importo="36.00", giorni="3")
     richieste = storage.carica()
-    assert richieste[0]["quota_esente"] == 24.0
+    assert richieste[0]["quota_esente"] == 30.0
     assert richieste[0]["quota_imponibile"] == 6.0
 
 
 def test_plafond_mensile_condiviso_tra_richieste(client):
     nuova_richiesta_pasto(
-        client, categoria="alloggio", notti="8", importo="1150.00", giorni=""
+        client, categoria="alloggio", notti="8", importo="1350.00", giorni=""
     )
     nuova_richiesta_pasto(client, importo="80.00", giorni="10")
     richieste = storage.carica()
-    assert richieste[0]["quota_esente"] == 1150.0
-    # Capienza residua: 1200 - 1150 = 50, quindi del pasto sono esenti solo 50.
+    assert richieste[0]["quota_esente"] == 1350.0
+    # Capienza residua: 1400 - 1350 = 50, quindi del pasto sono esenti solo 50.
     assert richieste[1]["quota_esente"] == 50.0
     assert richieste[1]["quota_imponibile"] == 30.0
 
@@ -93,6 +93,39 @@ def test_riepilogo_mostra_totali(client):
 
 def test_normativa_mostra_massimali_vigenti(client):
     testo = client.get("/normativa").get_data(as_text=True)
+    # 2026 values
+    assert "50.00" in testo
+    assert "85.00" in testo
+    assert "1400.00" in testo
+    assert "3.50" in testo
+    # 2025 values (still shown in the comparison column)
     assert "46.48" in testo
     assert "77.47" in testo
     assert "1200.00" in testo
+
+
+def test_agile_respinto_per_overlap_con_trasferta(client):
+    nuova_richiesta_pasto(
+        client, categoria="trasferta_italia", giorni="3", importo="150.00", data="2026-03-10"
+    )
+    nuova_richiesta_pasto(
+        client, categoria="lavoro_agile", giorni="1", importo="3.50", data="2026-03-11"
+    )
+    richieste = storage.carica()
+    assert richieste[0]["stato"] == "valida"
+    assert richieste[1]["stato"] == "respinta"
+    assert richieste[1]["motivazione"] == "incompatibilità lavoro agile / trasferta"
+
+
+def test_lavoro_agile_rispetta_limite_mensile(client):
+    nuova_richiesta_pasto(
+        client, categoria="lavoro_agile", giorni="12", importo="42.00"
+    )
+    nuova_richiesta_pasto(
+        client, categoria="lavoro_agile", giorni="3", importo="10.50"
+    )
+    richieste = storage.carica()
+    assert richieste[0]["quota_esente"] == 42.0
+    assert richieste[0]["quota_imponibile"] == 0.0
+    assert richieste[1]["quota_esente"] == 0.0
+    assert richieste[1]["quota_imponibile"] == 10.50

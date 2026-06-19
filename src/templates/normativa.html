@@ -2,32 +2,37 @@
 {% block titolo %}Normativa vigente{% endblock %}
 {% block contenuto %}
 <h1>Normativa vigente</h1>
-<p class="nota">Parametri applicati dal sistema. Fonte: {{ rules.RIFERIMENTO_NORMATIVO }}.</p>
+<p class="nota">Parametri applicati dal sistema a partire dal 01/01/2026. Fonte: {{ rules.RIFERIMENTO_NORMATIVO }}.</p>
 
 <table class="tabella">
   <thead>
     <tr>
       <th>Categoria</th>
-      <th class="num">Massimale di esenzione</th>
+      <th class="num">2025 ({{ rules.RIFERIMENTO_NORMATIVO_2025 }})</th>
+      <th class="num">2026 ({{ rules.RIFERIMENTO_NORMATIVO }})</th>
     </tr>
   </thead>
   <tbody>
     {% for codice, massimale in rules.MASSIMALI_GIORNALIERI.items() %}
     <tr>
       <td>{{ rules.CATEGORIE[codice] }}</td>
-      <td class="num">{{ "%.2f"|format(massimale) }} € / giorno</td>
+      <td class="num">{% if codice in rules.MASSIMALI_GIORNALIERI_2025 %}{{ "%.2f"|format(rules.MASSIMALI_GIORNALIERI_2025[codice]) }} € / giorno{% else %}—{% endif %}</td>
+      <td class="num"><strong>{{ "%.2f"|format(massimale) }} € / giorno</strong></td>
     </tr>
     {% endfor %}
     <tr>
       <td>{{ rules.CATEGORIE["chilometrico"] }}</td>
-      <td class="num">{{ "%.2f"|format(rules.MASSIMALE_KM) }} € / km</td>
+      <td class="num">{{ "%.2f"|format(rules.MASSIMALE_KM_2025) }} € / km</td>
+      <td class="num"><strong>{{ "%.2f"|format(rules.MASSIMALE_KM) }} € / km</strong></td>
     </tr>
     <tr>
       <td>{{ rules.CATEGORIE["alloggio"] }}</td>
-      <td class="num">{{ "%.2f"|format(rules.MASSIMALE_NOTTE) }} € / notte</td>
+      <td class="num">{{ "%.2f"|format(rules.MASSIMALE_NOTTE_2025) }} € / notte</td>
+      <td class="num"><strong>{{ "%.2f"|format(rules.MASSIMALE_NOTTE) }} € / notte</strong></td>
     </tr>
     <tr class="riga-evidenziata">
       <td><strong>Plafond mensile complessivo per dipendente</strong></td>
+      <td class="num">{{ "%.2f"|format(rules.PLAFOND_MENSILE_2025) }} € / mese</td>
       <td class="num"><strong>{{ "%.2f"|format(rules.PLAFOND_MENSILE) }} € / mese</strong></td>
     </tr>
   </tbody>

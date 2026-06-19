@@ -101,3 +101,47 @@ def test_alloggio_valido():
     assert validator.valida(
         richiesta(categoria="alloggio", notti=3, giorni=None)
     ) == (True, "")
+
+
+def test_lavoro_agile_valido():
+    assert validator.valida(
+        richiesta(data="2026-03-10", categoria="lavoro_agile", giorni=5)
+    ) == (True, "")
+
+
+def test_lavoro_agile_data_2025_respinto():
+    ok, motivazione = validator.valida(
+        richiesta(data="2025-10-06", categoria="lavoro_agile", giorni=5)
+    )
+    assert not ok
+    assert motivazione == "categoria non riconosciuta"
+
+
+def _richiesta_valida(categoria, data, giorni):
+    return {
+        "dipendente": "Maria Rossi",
+        "data": data,
+        "categoria": categoria,
+        "importo": 50.0,
+        "giorni": giorni,
+        "km": None,
+        "notti": None,
+        "stato": "valida",
+        "quota_esente": 50.0,
+    }
+
+
+def test_incompatibilita_agile_su_trasferta_valida():
+    trasferta = _richiesta_valida("trasferta_italia", "2026-03-10", 3)
+    agile = richiesta(data="2026-03-11", categoria="lavoro_agile", giorni=1)
+    ok, motivazione = validator.valida(agile, [trasferta])
+    assert not ok
+    assert motivazione == "incompatibilità lavoro agile / trasferta"
+
+
+def test_no_incompatibilita_se_trasferta_respinta():
+    trasferta = _richiesta_valida("trasferta_italia", "2026-03-10", 3)
+    trasferta["stato"] = "respinta"
+    agile = richiesta(data="2026-03-11", categoria="lavoro_agile", giorni=1)
+    ok, _ = validator.valida(agile, [trasferta])
+    assert ok

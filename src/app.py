@@ -34,11 +34,15 @@ def _registra(form):
         "km": _numero(form.get("km")),
         "notti": _intero(form.get("notti")),
     }
-    ok, motivazione = validator.valida(richiesta)
+    ok, motivazione = validator.valida(richiesta, richieste)
     if ok:
-        gia_riconosciuta = storage.esente_riconosciuta_nel_mese(
-            richieste, richiesta["dipendente"], storage.mese(richiesta)
-        )
+        dipendente = richiesta["dipendente"]
+        mese_r = storage.mese(richiesta)
+        gia_riconosciuta = storage.esente_riconosciuta_nel_mese(richieste, dipendente, mese_r)
+        if richiesta["categoria"] == "lavoro_agile":
+            richiesta["giorni_agile_gia_nel_mese"] = storage.giorni_agile_nel_mese(
+                richieste, dipendente, mese_r
+            )
         esente, imponibile, dettaglio = calculator.calcola(richiesta, gia_riconosciuta)
         richiesta.update(
             stato="valida",

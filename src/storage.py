@@ -28,6 +28,26 @@ def mese(richiesta):
     return richiesta["data"][:7]
 
 
+def giornate_coperte(richiesta):
+    """Set di date (datetime.date) coperte dalla richiesta."""
+    from datetime import date, timedelta
+    start = date.fromisoformat(richiesta["data"])
+    n = richiesta.get("giorni") or 1
+    return {start + timedelta(days=i) for i in range(n)}
+
+
+def giorni_agile_nel_mese(richieste, dipendente, mese_riferimento):
+    """Somma dei giorni lavoro_agile validi del dipendente nel mese."""
+    return sum(
+        r.get("giorni", 0) or 0
+        for r in richieste
+        if r["dipendente"] == dipendente
+        and r["stato"] == "valida"
+        and r["categoria"] == "lavoro_agile"
+        and mese(r) == mese_riferimento
+    )
+
+
 def esente_riconosciuta_nel_mese(richieste, dipendente, mese_riferimento):
     """Somma delle quote esenti delle richieste valide del dipendente nel mese."""
     totale = sum(
