@@ -40,8 +40,6 @@ pytest
 
 ## Struttura del progetto
 
-prova
-
 ```
 src/
 ├── app.py          # routes Flask
